@@ -1,8 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
 
-
-export default function Home() {
+export default function Page() {
   return (
-    <Button>Hello from liveStream</Button>
+   <div className="flex flex-col gap-y-4">
+ <h1>Dashboard</h1>
+ <UserButton
+ afterSignOutUrl="/"
+ />
+   </div>
   )
 }
