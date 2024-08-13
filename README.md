@@ -41,3 +41,7 @@ npx prisma db push
 npx prisma generate
 <!-- to run the studio(url database ) -->
 npx prisma studio
+<!-- ngrok run command -->
+ngrok http --domain=generous-valid-gar.ngrok-free.app 3000
+<!-- whenever we add someting in model or entity we have to run command -->
+npx prisma generate
