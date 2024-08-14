@@ -4,6 +4,7 @@
 import { isFollowingUser } from "@/lib/follow-service";
 import { getUserByUsername } from "@/lib/user-service";
 import { notFound } from "next/navigation";
+import { Actions } from "./_components/actions";
 
 // we can access the dynamic here
 interface UserPageProps{
@@ -21,6 +22,7 @@ const UserPage = async ({params}:UserPageProps) => {
    User name :{user.username}
    User id :{user.id}
    <p>{JSON.stringify(isFollowing)}</p>
+   <Actions userId={user.id} isFollowing={isFollowing}/>
   </div>;
 };
 
