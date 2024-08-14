@@ -40,11 +40,48 @@ export const followUser = async (id: string) => {
     throw new Error("You cannot follow yourself");
   }
   const follow = await db.follow.create({
-    data: { followedId: self.id, followingId:checkOtherUserExits.id},
-    include:{
-     following:true,
-     follower:true,
-    }
+    data: { followedId: self.id, followingId: checkOtherUserExits.id },
+    include: {
+      following: true,
+      follower: true,
+    },
   });
   return follow;
+};
+export const unfollowUser = async (id: string) => {
+  try {
+    const self = await getSelf();
+    const otherUser = await db.user.findUnique({
+      where: {
+        id,
+      },
+    });
+    if(!otherUser){
+      throw new Error('User not found')
+    }
+    if(otherUser.id=== self.id){
+      throw new Error('Cannot unfollow yourself')
+    }
+    const alreadyFollowing = await db.follow.findFirst({
+      where:{
+        followedId:self.id,
+        followingId:otherUser.id
+      }
+    })
+     if(!alreadyFollowing){
+      throw new Error('Not following')
+     }
+     const unfollow = await db.follow.delete({
+      where: {
+        id:alreadyFollowing.id
+      },
+      include:{
+        following:true,
+        follower:true
+      }
+     })
+     return unfollow;
+  } catch  {
+    throw new Error('Internal server error unfollow ')
+  }
 };
