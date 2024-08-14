@@ -6,6 +6,9 @@ import Link from "next/link";
 
 export const Actions = async () => {
  const user = await currentUser()
+//  if(!user){
+//   return false
+//  }
  return ( 
   <div className="flex items-center justify-end gap-x-2 ml-4 lg:ml-0">
    {!user && (

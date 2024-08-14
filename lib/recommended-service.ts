@@ -11,13 +11,26 @@ export const getRecommended = async () =>{
  }
 
  // show only login users
+ // dont Recommended user which are already following
  let users = [];
  if(userId){
   users = await db.user.findMany({
    where:{
-    NOT:{
-     id:userId
-    }
+    AND:[
+     {
+      NOT:{
+       id:userId
+      }
+     },{
+      NOT:{
+       followedBy:{
+        some:{
+         followedId:userId
+        }
+       }
+      }
+     }
+    ]
    }, orderBy:{
     createdAt:'desc'
    }

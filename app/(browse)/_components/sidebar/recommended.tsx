@@ -1,8 +1,9 @@
 "use client";
 import { useSidebar } from "@/store/user-sidebar";
-import { User } from "@clerk/nextjs/server";
+
 import React from "react";
 import UserItem, { UserItemSkeleton } from "./user-item";
+import { User } from "@prisma/client";
 interface RecommendedProps {
   data: User[];
 }

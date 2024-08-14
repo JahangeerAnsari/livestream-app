@@ -1,6 +1,24 @@
 import { getSelf } from "./auth-service";
 import { db } from "@/lib/db";
 
+//get all the user which are following me
+
+export const getFollowingUsers = async () =>{
+  try {
+    const self = await getSelf();
+    // all the users having currently following users 
+     const getFollowedUsers = await db.follow.findMany({where:{
+      followedId:self.id
+     },
+     include:{
+      following:true
+     }
+    })
+    return getFollowedUsers;
+  } catch{
+    return [];
+  }
+}
 // check if we follow the users by id
 export const isFollowingUser = async (id: string) => {
   try {
