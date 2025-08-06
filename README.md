@@ -34,3 +34,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+<!-- to push table into the db -->
+npx prisma db push
+<!-- TO access prisma into local modal -->
+npx prisma generate
+<!-- to run the studio(url database ) -->
+npx prisma studio
+<!-- ngrok run command -->
+ngrok http --domain=generous-valid-gar.ngrok-free.app 3000
+<!-- whenever we add someting in model or entity we have to run command -->
+npx prisma generate
